@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float _speed;
-    private float _startSpeed = 7f;
+    [SerializeField] private float _startSpeed = 20f;
 
     private GameObject _target;
     private GameObject _waypoints;
@@ -14,14 +14,13 @@ public class EnemyMovement : MonoBehaviour
         _speed = _startSpeed;
 
         _waypoints = GameObject.Find("Waypoints");
-
         _target = _waypoints.transform.GetChild(0).gameObject;
     }
 
     void Update()
     {
         Vector3 dir = _target.transform.position - transform.position;
-        transform.Translate(dir.normalized * _speed *Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * _speed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(_target.transform.position, transform.position) <= 0.3f)
         {
