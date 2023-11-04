@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -7,24 +9,39 @@ public class WaveSpawner : MonoBehaviour
 
     [SerializeField] private float _timeBetweenWaves = 5f;
     [SerializeField] private float _countdown = 2f;
+    private int _waveIndex = 0;
+    private int _maxWave = 5;
 
+    [SerializeField] private GamePlayUI _gamePlayUI;
 
-    //private int _numOfEnemiesSpawnEachWave = 1;
+    void Start()
+    {
+        _gamePlayUI.UpdateWaveText(_waveIndex + 1);
+    }
 
     void Update()
     {
         if (_countdown <= 0f)
         {
-            SpawnWave();
+            StartCoroutine(SpawnWave());
             _countdown = _timeBetweenWaves;
         }
-
-        _countdown -= Time.deltaTime;
+        if (_waveIndex < _maxWave)
+        {
+            _countdown -= Time.deltaTime;
+            _gamePlayUI.UpdateTimeText(_countdown);
+        } 
     }
 
-    void SpawnWave()
+    IEnumerator SpawnWave()
     {
-        //Instantiate(_enemyPrefab, _spawnPos.transform.position, Quaternion.identity);
+        _waveIndex++;
+        if (_waveIndex > 1)
+        {
+            _gamePlayUI.UpdateWaveText(_waveIndex);
+        }
+        Instantiate(_enemyPrefab, _spawnPos.transform.position, Quaternion.identity);
+        yield return null;
     }
 
 }
