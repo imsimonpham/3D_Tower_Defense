@@ -1,22 +1,24 @@
 using UnityEngine;
 using System.Collections;
-using System;
 
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _spawnPos;
+    
 
     [SerializeField] private float _timeBetweenWaves = 5f;
     [SerializeField] private float _countdown = 2f;
     private int _waveIndex = 0;
     private int _maxWave = 5;
+    private int _enemyIndex;
 
     [SerializeField] private GamePlayUI _gamePlayUI;
 
     void Start()
     {
         _gamePlayUI.UpdateWaveText(_waveIndex + 1);
+        _enemyIndex = 0;
     }
 
     void Update()
@@ -40,7 +42,9 @@ public class WaveSpawner : MonoBehaviour
         {
             _gamePlayUI.UpdateWaveText(_waveIndex);
         }
-        Instantiate(_enemyPrefab, _spawnPos.transform.position, Quaternion.identity);
+        Enemy enemy = Instantiate(_enemyPrefab, _spawnPos.transform.position, Quaternion.identity).GetComponent<Enemy>();
+        enemy.SetEnemyIndex(_enemyIndex);
+        _enemyIndex++;
         yield return null;
     }
 

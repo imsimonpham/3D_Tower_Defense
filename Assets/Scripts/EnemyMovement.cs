@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float _speed;
-    [SerializeField] private float _startSpeed = 20f;
+    [SerializeField] private float _startSpeed = 10f;
 
     private GameObject _target;
     private GameObject _waypoints;
