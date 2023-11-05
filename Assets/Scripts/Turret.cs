@@ -1,15 +1,22 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    [Header("Unity Setup Fields")]
     [SerializeField] private GameObject _target;
-    [SerializeField] private float _range = 15f;
     [SerializeField] private string _enemyTag = "Enemy";
-
     [SerializeField] private GameObject _turretHead;
-    [SerializeField] private GameObject _gunPoint;
+    [SerializeField] private GameObject _firePoint;
+    [SerializeField] private GameObject _bulletPrefab;
+
+    [Header("Turret's Properties")]
+    [SerializeField] private float _range = 15f;
+    [SerializeField] private float _fireRate = 1f;
     private float _rotationSpeed = 10f;
+    private float _canFire = 0f;
+   
 
     void Start()
     {
@@ -23,6 +30,23 @@ public class Turret : MonoBehaviour
             return;
        }
        RotateTurretHead();
+
+       if(_canFire <= 0f)
+       {
+            ShootBullets();
+            _canFire = 1f / _fireRate;
+       }
+        _canFire -= Time.deltaTime; 
+    }
+
+    void ShootBullets()
+    {
+        GameObject bulletGO = Instantiate(_bulletPrefab, _firePoint.transform.position, _firePoint.transform.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        if (bullet != null) {
+            bullet.SeekTarget(_target);
+        }
     }
 
     void RotateTurretHead()
@@ -74,7 +98,9 @@ public class Turret : MonoBehaviour
         #endif
         if(_target != null) { 
             Gizmos.color = Color.red;      
-            Gizmos.DrawLine(_gunPoint.transform.position, _target.transform.position);
+            Gizmos.DrawLine(_firePoint.transform.position, _target.transform.position);
         }
     }
+
+    
 }

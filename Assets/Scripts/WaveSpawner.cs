@@ -4,9 +4,9 @@ using System.Collections;
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
-    [SerializeField] private GameObject _spawnPos;
+    [SerializeField] private GameObject _startPos;
+    [SerializeField] private GameObject _enemyContainer;
     
-
     [SerializeField] private float _timeBetweenWaves = 5f;
     [SerializeField] private float _countdown = 2f;
     private int _waveIndex = 0;
@@ -42,7 +42,9 @@ public class WaveSpawner : MonoBehaviour
         {
             _gamePlayUI.UpdateWaveText(_waveIndex);
         }
-        Enemy enemy = Instantiate(_enemyPrefab, _spawnPos.transform.position, Quaternion.identity).GetComponent<Enemy>();
+        Vector3 spawnPos = new Vector3(_startPos.transform.position.x, _startPos.transform.position.y - 1f, _startPos.transform.position.z);
+        Enemy enemy = Instantiate(_enemyPrefab, spawnPos, Quaternion.identity).GetComponent<Enemy>();
+        enemy.transform.parent = _enemyContainer.transform;
         enemy.SetEnemyIndex(_enemyIndex);
         _enemyIndex++;
         yield return null;
