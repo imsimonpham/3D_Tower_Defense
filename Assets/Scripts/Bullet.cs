@@ -20,6 +20,11 @@ public class Bullet : MonoBehaviour
         transform.Translate(dir.normalized * Time.deltaTime * _speed, Space.World);
     }
 
+    public void SeekTarget(GameObject target)
+    {
+        _target = target;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -31,8 +36,5 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SeekTarget(GameObject target)
-    {
-        _target = target;
-    }
+    
 }

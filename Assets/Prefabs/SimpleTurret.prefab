@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4774560960807383660}
   m_Layer: 0
-  m_Name: Gunpoint
+  m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,10 +220,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
-  _range: 15
   _enemyTag: Enemy
   _turretHead: {fileID: 1690236382325039784}
-  _gunPoint: {fileID: 559260812763558379}
+  _firepoint: {fileID: 559260812763558379}
+  _bulletPrefab: {fileID: 7673686151885864600, guid: f917cd57391333e4c9a9c47deee91990, type: 3}
+  _range: 15
+  _fireRate: 1
 --- !u!1 &4811581272902121111
 GameObject:
   m_ObjectHideFlags: 0

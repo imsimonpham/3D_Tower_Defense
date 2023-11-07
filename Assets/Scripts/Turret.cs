@@ -8,7 +8,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject _target;
     [SerializeField] private string _enemyTag = "Enemy";
     [SerializeField] private GameObject _turretHead;
-    [SerializeField] private GameObject _firePoint;
+    [SerializeField] private GameObject _firepoint;
     [SerializeField] private GameObject _bulletPrefab;
 
     [Header("Turret's Properties")]
@@ -29,6 +29,7 @@ public class Turret : MonoBehaviour
        {
             return;
        }
+
        RotateTurretHead();
 
        if(_canFire <= 0f)
@@ -41,7 +42,7 @@ public class Turret : MonoBehaviour
 
     void ShootBullets()
     {
-        GameObject bulletGO = Instantiate(_bulletPrefab, _firePoint.transform.position, _firePoint.transform.rotation);
+        GameObject bulletGO = Instantiate(_bulletPrefab, _firepoint.transform.position, _firepoint.transform.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null) {
@@ -98,7 +99,7 @@ public class Turret : MonoBehaviour
         #endif
         if(_target != null) { 
             Gizmos.color = Color.red;      
-            Gizmos.DrawLine(_firePoint.transform.position, _target.transform.position);
+            Gizmos.DrawLine(_firepoint.transform.position, _target.transform.position);
         }
     }
 

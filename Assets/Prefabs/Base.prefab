@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3869769196434473496}
   - component: {fileID: 7439603454341314479}
   - component: {fileID: 7621413447886019634}
+  - component: {fileID: -7363689120863048883}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -107,3 +108,17 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &-7363689120863048883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828466232399505788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b102c8855e3df448ddab575923386e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hoverColor: {r: 0.16006854, g: 0.8679245, b: 0.10234957, a: 0}
+  _originalColor: {r: 1, g: 1, b: 1, a: 0}
