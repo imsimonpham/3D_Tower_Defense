@@ -3,8 +3,9 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] float _speed;
-    [SerializeField] private float _startSpeed = 10f;
-
+    [SerializeField] private float _startSpeed;
+    
+    private PlayerStats _playerStats;
     private GameObject _target;
     private GameObject _waypoints;
     private int _waypointIndex = 0;
@@ -15,6 +16,11 @@ public class EnemyMovement : MonoBehaviour
 
         _waypoints = GameObject.Find("Waypoints");
         _target = _waypoints.transform.GetChild(0).gameObject;
+        _playerStats = GameObject.Find("PlayerStats").GetComponent<PlayerStats>();
+        if (_playerStats == null)
+        {
+            Debug.LogError("Player Stats is null!");
+        }
     }
 
     void Update()
@@ -32,10 +38,16 @@ public class EnemyMovement : MonoBehaviour
     {
         if(_waypointIndex >= _waypoints.transform.childCount -1 )
         {
-            Destroy(this.gameObject);
+            EndPath();
             return;
         }
         _waypointIndex++;
         _target = _waypoints.transform.GetChild(_waypointIndex).gameObject;
+    }
+
+    void EndPath()
+    {
+        _playerStats.ReduceLives();
+        Destroy(this.gameObject);
     }
 }

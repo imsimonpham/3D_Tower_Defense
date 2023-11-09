@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
@@ -42,12 +43,22 @@ public class WaveSpawner : MonoBehaviour
         {
             _gamePlayUI.UpdateWaveText(_waveIndex);
         }
+        
+        for (int i = 0; i < _waveIndex; i++)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield return null;
+    }
+
+    void SpawnEnemy()
+    {
         Vector3 spawnPos = new Vector3(_startPos.transform.position.x, _startPos.transform.position.y - 1f, _startPos.transform.position.z);
         Enemy enemy = Instantiate(_enemyPrefab, spawnPos, Quaternion.identity).GetComponent<Enemy>();
         enemy.transform.parent = _enemyContainer.transform;
         enemy.SetEnemyIndex(_enemyIndex);
         _enemyIndex++;
-        yield return null;
     }
 
 }
