@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour
     {
         _money = _startMoney;
         _lives = _startLives;
+        _gamePlayUI.UpdateLiveText(_lives);
     }
 
     public float GetMoney()

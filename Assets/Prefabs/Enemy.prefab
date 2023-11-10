@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _startSpeed: 10
+  _startSpeed: 30
 --- !u!114 &2324323408125753204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +136,4 @@ MonoBehaviour:
   _enemyIndex: 0
   _health: 0
   _startHealth: 100
+  _moneyGain: 10

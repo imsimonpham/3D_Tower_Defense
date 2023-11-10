@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -8,6 +9,10 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject _towerHead;
     [SerializeField] private GameObject _firePoint;
     [SerializeField] private GameObject _rangeCircle;
+    [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private ParticleSystem _laserImpactEffect;
+    [SerializeField] private Light _laserLight;
+    private Enemy _targetEnemy;
 
     [Header("Tower's Properties")]
     [SerializeField] private float _range = 15f;
@@ -20,7 +25,9 @@ public class Tower : MonoBehaviour
 
     [Header("Laser-based Tower")] 
     [SerializeField] private bool _useLaser = false;
-    [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private float _dps = 30f;
+    [SerializeField] private float _slowPct = 0.5f;
+    
 
     void Start()
     {
@@ -37,6 +44,8 @@ public class Tower : MonoBehaviour
                if (_lineRenderer.enabled)
                {
                    _lineRenderer.enabled = false;
+                   _laserImpactEffect.Stop();
+                   _laserLight.enabled = false;
                }
            }
            return;
@@ -64,16 +73,32 @@ public class Tower : MonoBehaviour
         //_rangeCircle.SetActive(true);
         //Debug.Log("Turret Clicked");
     }
-
+    
     void ShootLaser()
     {
         if (!_lineRenderer.enabled)
         {
             _lineRenderer.enabled = true;
+            _laserImpactEffect.Play();
+            _laserLight.enabled = true;
         }
         _lineRenderer.SetPosition(0, _firePoint.transform.position);
-        _lineRenderer.SetPosition(1, _target.transform.position);
+
+        RaycastHit hit;
+        if (Physics.Raycast(_firePoint.transform.position, _target.transform.position - _firePoint.transform.position, out hit))
+        {
+            _lineRenderer.SetPosition(1, hit.point);
+            //Dmg + slow
+            _targetEnemy.TakeDamage(_dps * Time.deltaTime);
+            _targetEnemy.Slow(_slowPct);
+            
+            //Laser Effect
+            _laserImpactEffect.transform.position = hit.point;
+            Vector3 dir = _firePoint.transform.position - _target.transform.position;
+            _laserImpactEffect.transform.rotation = Quaternion.LookRotation(dir);
+        }
     }
+    
 
     void ShootBullets()
     {
@@ -115,6 +140,16 @@ public class Tower : MonoBehaviour
                     prioritizedEnemy = enemy.gameObject;
                 }
             }
+        }
+
+        if (prioritizedEnemy != null)
+        {
+            _target = prioritizedEnemy;
+            _targetEnemy = prioritizedEnemy.GetComponent<Enemy>();
+        }
+        else
+        {
+            _target = null;
         }
         _target = prioritizedEnemy != null ? prioritizedEnemy : null;
     }

@@ -32,6 +32,9 @@ public class EnemyMovement : MonoBehaviour
         {
             GetToNextWaypoint();
         }
+
+        //reset enemy speed when out of range of spire
+        _speed = _startSpeed;
     }
 
     void GetToNextWaypoint()
@@ -49,5 +52,15 @@ public class EnemyMovement : MonoBehaviour
     {
         _playerStats.ReduceLives();
         Destroy(this.gameObject);
+    }
+
+    public float GetStartSpeed()
+    {
+        return _startSpeed;
+    }
+    
+    public float SetSpeed(float speed)
+    {
+        return _speed = speed;
     }
 }

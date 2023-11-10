@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _startHealth;
     [SerializeField] private float _moneyGain = 15f;
     private GamePlayUI _gamePlayUI;
-    private PlayerStats _playerStats; 
+    private PlayerStats _playerStats;
+    private EnemyMovement _enemyMovement;
     void Start()
     {
         _playerStats = GameObject.Find("PlayerStats").GetComponent<PlayerStats>();
@@ -20,6 +21,12 @@ public class Enemy : MonoBehaviour
         if (_gamePlayUI == null)
         {
             Debug.LogError("GamePlay UI is null!");
+        }
+
+        _enemyMovement = GetComponent<EnemyMovement>();
+        if (_enemyMovement == null)
+        {
+            Debug.LogError("Enemy movement is null!");
         }
     }
     public void SetEnemyIndex(int index)
@@ -40,6 +47,12 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void Slow(float pct)
+    {
+        float newSpeed = _enemyMovement.GetStartSpeed() * (1 - pct);
+        _enemyMovement.SetSpeed(newSpeed);
     }
 
     void Die()

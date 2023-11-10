@@ -1,20 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerStats _playerStats;
-    // Update is called once per frame
+    [SerializeField] private GameObject _gameOverUI;
     void Update()
     {
         if (_playerStats.GetLives() <= 0)
         {
             EndGame();
-            return;
         }
     }
 
     void EndGame()
     {
-        Debug.Log("Game Over!");
+        _gameOverUI.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            string activeScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(activeScene);
+        }
     }
 }
