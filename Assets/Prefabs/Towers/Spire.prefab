@@ -10248,7 +10248,7 @@ Transform:
   - {fileID: 2374470551180472865}
   - {fileID: 8356083309116628056}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6481407484772502290
 MonoBehaviour:
@@ -10267,13 +10267,16 @@ MonoBehaviour:
   _towerHead: {fileID: 931446103870288056}
   _firePoint: {fileID: 8463492206162025340}
   _rangeCircle: {fileID: 6854915388285634596}
-  _range: 20
-  _fireRate: 1
-  _bulletPrefab: {fileID: 7673686151885864600, guid: f917cd57391333e4c9a9c47deee91990, type: 3}
-  _useLaser: 1
   _lineRenderer: {fileID: 8190346553436093832}
   _laserImpactEffect: {fileID: 5349833284630244739}
   _laserLight: {fileID: 3941399325815582568}
+  _range: 20
+  _yOffset: 1.377
+  _fireRate: 1
+  _bulletPrefab: {fileID: 7673686151885864600, guid: f917cd57391333e4c9a9c47deee91990, type: 3}
+  _useLaser: 1
+  _dps: 30
+  _slowPct: 0.5
 --- !u!120 &8190346553436093832
 LineRenderer:
   serializedVersion: 2
@@ -10477,6 +10480,10 @@ PrefabInstance:
     - target: {fileID: 3848313972508297069, guid: 5c31625ee19627c4c91656223da26ed2, type: 3}
       propertyPath: m_Name
       value: RangeCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848313972508297069, guid: 5c31625ee19627c4c91656223da26ed2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6386521197131850082, guid: 5c31625ee19627c4c91656223da26ed2, type: 3}
       propertyPath: m_CastShadows

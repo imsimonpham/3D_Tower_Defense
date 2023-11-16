@@ -24,14 +24,14 @@ public class TowerBase : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!_buildManager.CanBuild()) {
-            Debug.Log("Tower is null");
-            return;
-        }
-       
         if (_existingTower != null)
         {
-            Debug.Log("There is already a tower");
+            _buildManager.SelectTowerBase(this);
+            return;
+        }
+        
+        if (!_buildManager.CanBuild()) {
+            Debug.Log("Tower is null");
             return;
         }
         
@@ -43,10 +43,33 @@ public class TowerBase : MonoBehaviour
         Vector3 buildPos = new Vector3(base.transform.position.x, base.transform.position.y + tower.GetYOffset(), base.transform.position.z);
         return buildPos; 
     }
+    
+    public Vector3 GetCurrentBuildPos (Tower tower)
+    {
+        Vector3 buildPos = new Vector3(base.transform.position.x, base.transform.position.y + tower.GetTowerYOffset(), base.transform.position.z);
+        return buildPos; 
+    }
+
+    public GameObject GetExistingTower()
+    {
+        return _existingTower;
+    }
 
     public void SetExistingTower(GameObject tower)
     {
         _existingTower = tower;
+    }
+
+    public void ShowRangeCircle(GameObject tower)
+    {
+        GameObject circle = tower.GetComponent<Tower>().GetTowerRangeCircle();
+        circle.SetActive(true);
+    }
+    
+    public void HideRangeCircle(GameObject tower)
+    {
+        GameObject circle = tower.GetComponent<Tower>().GetTowerRangeCircle();
+        circle.SetActive(false);
     }
 
     void OnMouseEnter()

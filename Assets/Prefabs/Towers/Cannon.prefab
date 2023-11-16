@@ -124,7 +124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6627560621741106714
 Transform:
   m_ObjectHideFlags: 0
@@ -568,7 +568,7 @@ Transform:
   - {fileID: 3543639603208470222}
   - {fileID: 3604690718132303420}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &234561064927795124
 MonoBehaviour:
@@ -585,11 +585,18 @@ MonoBehaviour:
   _target: {fileID: 0}
   _enemyTag: Enemy
   _towerHead: {fileID: 6026781964369651919}
-  _firepoint: {fileID: 5004431889689781264}
-  _bulletPrefab: {fileID: 7229229574368764986, guid: c77888b2cebe9ab40b9b0d8393edfa31, type: 3}
+  _firePoint: {fileID: 5004431889689781264}
   _rangeCircle: {fileID: 2186168297467265110}
+  _lineRenderer: {fileID: 0}
+  _laserImpactEffect: {fileID: 0}
+  _laserLight: {fileID: 0}
   _range: 20
+  _yOffset: 1.133
   _fireRate: 0.5
+  _bulletPrefab: {fileID: 7229229574368764986, guid: c77888b2cebe9ab40b9b0d8393edfa31, type: 3}
+  _useLaser: 0
+  _dps: 30
+  _slowPct: 0.5
 --- !u!1 &6519303597500033889
 GameObject:
   m_ObjectHideFlags: 0

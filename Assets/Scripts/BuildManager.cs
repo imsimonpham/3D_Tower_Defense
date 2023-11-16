@@ -6,9 +6,11 @@ public class BuildManager : MonoBehaviour
     public static BuildManager instance;
     
     private TowerBlueprint _towerToBuild;
+    private TowerBase _selectedTowerBase;
     [SerializeField] private GameObject _buildEffectPrefab;
     [SerializeField] private PlayerStats _playerStats;
     [SerializeField] private GamePlayUI _gameplayUI;
+    [SerializeField] private TowerBaseUI _towerBaseUI;
     void Awake()
     {
         if (instance != null)
@@ -32,6 +34,26 @@ public class BuildManager : MonoBehaviour
     public void SelectTowerToBuild(TowerBlueprint tower)
     {
         _towerToBuild = tower;
+        _selectedTowerBase = null;
+        _towerBaseUI.Hide();
+    }
+
+    public void SelectTowerBase(TowerBase towerBase)
+    {
+        if (_selectedTowerBase == towerBase)
+        {
+            DeselectTowerBase();
+            return;
+        }
+        _selectedTowerBase = towerBase;
+        _towerToBuild = null;
+        _towerBaseUI.SetTarget(towerBase);
+    }
+
+    public void DeselectTowerBase()
+    {
+        _selectedTowerBase = null;
+        _towerBaseUI.Hide();
     }
 
     public void BuildTowerOn (TowerBase towerBase)
@@ -51,6 +73,7 @@ public class BuildManager : MonoBehaviour
         GameObject tower = Instantiate(_towerToBuild.GetPrefab(), towerBase.GetBuildPos(_towerToBuild), Quaternion.identity);
         GameObject buildEffect = Instantiate(_buildEffectPrefab, towerBase.GetBuildPos(_towerToBuild), Quaternion.identity);
         towerBase.SetExistingTower(tower);
+        StartCoroutine(tower.GetComponent<Tower>().HideRangeCirle());
         Destroy(buildEffect, 2f);
     }
 }

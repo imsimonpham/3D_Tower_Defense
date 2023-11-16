@@ -7,6 +7,7 @@ public class RangeCircle : MonoBehaviour
     private int _steps = 1000;
     private float _startWidth = 0.1f;
     private float _endWidth = 0.1f;
+    
 
     void Update()
     {
@@ -34,4 +35,6 @@ public class RangeCircle : MonoBehaviour
             _circleRenderer.SetPosition(currentStep, pos) ;
         }
     }
+    
+    
 }

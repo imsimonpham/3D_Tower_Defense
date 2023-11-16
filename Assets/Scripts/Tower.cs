@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -17,6 +17,7 @@ public class Tower : MonoBehaviour
     [Header("Tower's Properties")]
     [SerializeField] private float _range = 15f;
     private float _rotationSpeed = 10f;
+    [SerializeField] private float _yOffset;
     
     [Header("Bullet-based Tower")]
     [SerializeField] private float _fireRate = 1f;
@@ -32,7 +33,6 @@ public class Tower : MonoBehaviour
     void Start()
     {
         InvokeRepeating("ScanForTargets", 0f, 0.3f);
-        _rangeCircle.SetActive(true);
     }
 
     void Update()
@@ -66,12 +66,6 @@ public class Tower : MonoBehaviour
            }
            _canFire -= Time.deltaTime;   
        }
-    }
-
-    private void OnMouseDown()
-    {
-        //_rangeCircle.SetActive(true);
-        //Debug.Log("Turret Clicked");
     }
     
     void ShootLaser()
@@ -156,5 +150,23 @@ public class Tower : MonoBehaviour
     public float GetTowerRange()
     {
         return _range;
+    }
+
+    public GameObject GetTowerRangeCircle()
+    {
+        return _rangeCircle;
+    }
+    
+    public float GetTowerYOffset()
+    {
+        return _yOffset;
+    }
+
+    public IEnumerator HideRangeCirle()
+    {
+        yield return new WaitForSeconds(2f);
+        _rangeCircle.SetActive(false);
+        Debug.Log("Coroutine");
+        yield return null;
     }
 }
