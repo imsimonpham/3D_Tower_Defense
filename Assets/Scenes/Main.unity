@@ -626,7 +626,7 @@ MonoBehaviour:
   _enemyContainer: {fileID: 140998606}
   _timeBetweenWaves: 5.5
   _countdown: 2
-  _gamePlayUI: {fileID: 800144092}
+  _gamePlayUI: {fileID: 1047865167}
 --- !u!114 &263871852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,9 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fcc15ef8cc8ce40b8efdb826aa28bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildEffectPrefab: {fileID: 2200243301042233356, guid: 26e44a458601ae94ab4b4f0724db3c9d, type: 3}
   _playerStats: {fileID: 1910891626}
-  _gameplayUI: {fileID: 800144092}
   _towerBaseUI: {fileID: 917825293}
 --- !u!114 &263871853
 MonoBehaviour:
@@ -3009,7 +3007,6 @@ GameObject:
   - component: {fileID: 800144090}
   - component: {fileID: 800144089}
   - component: {fileID: 800144088}
-  - component: {fileID: 800144092}
   m_Layer: 5
   m_Name: GamePlayCanvas
   m_TagString: Untagged
@@ -3102,22 +3099,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &800144092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800144087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db60017d5a63cb24e9e47fbd5aab87b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waveText: {fileID: 639260683}
-  _timeText: {fileID: 1187004292}
-  _liveText: {fileID: 818584071}
-  _moneyText: {fileID: 106893809}
 --- !u!1 &818584069
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,7 +3315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &917825292
 Transform:
   m_ObjectHideFlags: 0
@@ -3363,7 +3344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b7550dddf2c5e647823c51078784c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerBaseUICanvas: {fileID: 1431330860}
+  _towerBaseUICanvas: {fileID: 917825291}
+  _upgradeCostText: {fileID: 482067499}
+  _upgradeBtn: {fileID: 1327912185}
+  _upgradeText: {fileID: 759043953}
 --- !u!1 &960822451
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,6 +3627,7 @@ GameObject:
   - component: {fileID: 1047865165}
   - component: {fileID: 1047865164}
   - component: {fileID: 1047865166}
+  - component: {fileID: 1047865167}
   m_Layer: 5
   m_Name: GamePlayUI
   m_TagString: Untagged
@@ -3738,6 +3723,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1047865167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047865162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db60017d5a63cb24e9e47fbd5aab87b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveText: {fileID: 639260683}
+  _timeText: {fileID: 1187004292}
+  _liveText: {fileID: 818584071}
+  _moneyText: {fileID: 106893809}
 --- !u!1001 &1122540504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4434,15 +4435,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turret:
     _prefab: {fileID: 2399674984653263576, guid: 6a344ddbd2ab8c9499b82e189e587dc6, type: 3}
+    _upgradePrefab: {fileID: 2399674984653263576, guid: f2f8e0ad692a3ee4c9639900fc96f3bb, type: 3}
     _cost: 50
+    _upgradeCost: 40
     _yOffset: 0.825
   _cannon:
     _prefab: {fileID: 6338950001205882490, guid: 50dbca4d6afbbbd43b7f77055ce0fe53, type: 3}
+    _upgradePrefab: {fileID: 6338950001205882490, guid: 72b21311b99bf834b9e58ffff8fea7df, type: 3}
     _cost: 150
+    _upgradeCost: 120
     _yOffset: 1.133
   _spire:
     _prefab: {fileID: 6881649235807667275, guid: 7eb42280020e74540924d2925b9fef77, type: 3}
+    _upgradePrefab: {fileID: 6881649235807667275, guid: a94b2fe74368b2944ba8705af907094f, type: 3}
     _cost: 100
+    _upgradeCost: 80
     _yOffset: 1.377
   _turretCostText: {fileID: 322843797}
   _cannonCostText: {fileID: 1160791678}
@@ -4532,7 +4539,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1327912186}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 917825293}
+        m_TargetAssemblyTypeName: TowerBaseUI, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1327912186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4792,7 +4811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1431330861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6171,7 +6190,7 @@ MonoBehaviour:
   _startMoney: 200
   _lives: 0
   _startLives: 1
-  _gamePlayUI: {fileID: 800144092}
+  _gamePlayUI: {fileID: 1047865167}
 --- !u!1 &1915634802
 GameObject:
   m_ObjectHideFlags: 0

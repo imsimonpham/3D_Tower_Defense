@@ -10225,7 +10225,7 @@ GameObject:
   - component: {fileID: 6481407484772502290}
   - component: {fileID: 8190346553436093832}
   m_Layer: 0
-  m_Name: Spire
+  m_Name: Spire_Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10240,15 +10240,15 @@ Transform:
   m_GameObject: {fileID: 6881649235807667275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3581196, y: 0.86742, z: 1.3581196}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.7400001, y: 1.111324, z: 1.7400001}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4296769746317489356}
   - {fileID: 8399565257664541017}
   - {fileID: 2374470551180472865}
   - {fileID: 8356083309116628056}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6481407484772502290
 MonoBehaviour:
@@ -10270,13 +10270,13 @@ MonoBehaviour:
   _lineRenderer: {fileID: 8190346553436093832}
   _laserImpactEffect: {fileID: 5349833284630244739}
   _laserLight: {fileID: 3941399325815582568}
-  _range: 20
+  _range: 25
   _yOffset: 1.377
   _fireRate: 1
   _bulletPrefab: {fileID: 7673686151885864600, guid: f917cd57391333e4c9a9c47deee91990, type: 3}
   _useLaser: 1
-  _dps: 65
-  _slowPct: 0.5
+  _dps: 85
+  _slowPct: 0.65
 --- !u!120 &8190346553436093832
 LineRenderer:
   serializedVersion: 2

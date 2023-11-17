@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3806724578134392245}
   - component: {fileID: 7948757947911711890}
   m_Layer: 0
-  m_Name: CannonBall
+  m_Name: CannonBall_Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 50
-  _dmg: 65
+  _dmg: 85
   _explosionRadius: 5
   _bulletImpactPrefab: {fileID: 337361812623549614, guid: 89fffb85d4abc734ba8ffbb69bf1cf93, type: 3}
 --- !u!54 &7948757947911711890

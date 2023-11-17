@@ -120,5 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b102c8855e3df448ddab575923386e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hoverColor: {r: 0.16006854, g: 0.8679245, b: 0.10234957, a: 0}
-  _originalColor: {r: 1, g: 1, b: 1, a: 0}
+  _existingTower: {fileID: 0}
+  _gameplayUI: {fileID: 0}
+  _buildEffectPrefab: {fileID: 2200243301042233356, guid: 26e44a458601ae94ab4b4f0724db3c9d, type: 3}

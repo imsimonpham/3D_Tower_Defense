@@ -166,7 +166,6 @@ public class Tower : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         _rangeCircle.SetActive(false);
-        Debug.Log("Coroutine");
         yield return null;
     }
 }

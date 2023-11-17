@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Player Stats is null!");
         }
         
-        _gamePlayUI = GameObject.Find("GamePlayCanvas").GetComponent<GamePlayUI>();
+        _gamePlayUI = GameObject.Find("GamePlayUI").GetComponent<GamePlayUI>();
         if (_gamePlayUI == null)
         {
             Debug.LogError("GamePlay UI is null!");
